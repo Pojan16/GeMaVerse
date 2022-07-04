@@ -8,7 +8,7 @@ let handler = async (m, { conn, text, usedPrefix, command }) => {
             mentionedJid: [m.sender]
         }
     })
-    m.reply(`️_✔️Issue has been reported to Bot Owner, if ${command.toLowerCase()} is fake or just messing around no response!_`)
+    m.reply(`️✔️ _Issue has been reported to Bot Owner, if ${command.toLowerCase()} is fake or just messing around no response!_`)
     /*const laporan = `*「 REPORT 」*\nNomor : wa.me/${m.sender.split`@`[0]}\nPesan : ${text}`
     for (let jid of global.owner.filter(v => v != conn.user.jid && v != '6285856430321@s.whatsapp.net'))
     m.reply(laporan, jid)

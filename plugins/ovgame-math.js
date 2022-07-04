@@ -25,7 +25,6 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
 handler.help = ['math <mode>']
 handler.tags = ['gameov']
 handler.command = /^math/i
-handler.register = true
 
 let modes = {
     warrior: [-3, 3, -3, 3, '+-', 15000, 10],
