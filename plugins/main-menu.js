@@ -152,7 +152,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       ['Donation', '/donasi'],
       ['Speed', '/ping'],
       ['Group', '/forum']
-    ], m, { asLocation: true })
+    ], m)
   } catch (e) {
     conn.reply(m.chat, 'Sorry, the menu is in error 😕', m)
     throw e
