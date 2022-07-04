@@ -33,7 +33,7 @@ export async function all(m) {
     description: `
 *Welcome to the official GeMa-Bot WhatsApp*🤖
 
-\`\`\`Hi, ${ucapan()}, I am GeMa WhatsApp Bot Assistant who is ready to help you with some of the features that the bot has.
+\`\`\`Hi, I am GeMa WhatsApp Bot Assistant who is ready to help you with some of the features that the bot has.
 
 By starting this conversation, you agree to the terms and conditions of GeMa-Bot, right? 🤔\`\`\`
 
@@ -48,7 +48,7 @@ _t.me/gemazan/_`,
   await this.sendMessage(m.chat, button, listMessage, m)
   users.pc = new Date * 1
 }
-function ucapan() {
+/*function ucapan() {
   const time = moment.tz('Asia/Jakarta').format('HH')
   res = "Good early days 🌚"
   if (time >= 4) {
