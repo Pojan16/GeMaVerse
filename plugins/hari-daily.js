@@ -1,9 +1,9 @@
 import db from '../lib/database.js'
 
 const rewards = {
-  exp: 5,
-  limit: 50,
-  coin: 9999,
+  limit: 10,
+  exp: 50,
+  coin: 999,
 }
 const cooldown = 86400000
 let handler = async (m) => {
