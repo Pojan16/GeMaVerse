@@ -44,7 +44,6 @@ _Active During_ *${uptime}*
 \`\`\`
 
 ━━「 *Thanks for you* 」━━
-_Please join_ *GROUP* _by pressing the button below for status and updates from GeMa BOT._
 
 ----------------
 _Want to advertise here? Contact._ 6285856430321

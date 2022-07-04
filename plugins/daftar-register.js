@@ -1,3 +1,4 @@
+import db, { loadDatabase } from './lib/database.js'
 import { createHash } from 'crypto'
 let Reg = /\|?(.*)([.|] *?)([0-9]*)$/i
 let handler = async (m, { text, usedPrefix }) => {

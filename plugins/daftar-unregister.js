@@ -1,3 +1,4 @@
+import db, { loadDatabase } from './lib/database.js'
 import { createHash } from 'crypto'
 let handler = async (m, { args }) => {
   if (!args[0]) throw 'Serial Number is empty, check your sn using _/mysn_ to enter a valid sn!'
