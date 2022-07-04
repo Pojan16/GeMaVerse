@@ -1,5 +1,6 @@
 //credits: https://github.com/ariffb25/
 //buatan Zeroz04n aseli awikwok
+import db from '../lib/database.js'
 import moment from 'moment-timezone'
 
 export async function all(m) {

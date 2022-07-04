@@ -133,12 +133,12 @@ let handler = (m, { conn, usedPrefix: _p, __dirname }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    let pp = '../src/anime.jpg'
+    const pp = conn.profilePictureUrl(conn.user.jid).catch(_ => './src/anime.jpg')
     conn.sendHydrated(m.chat, text.trim(), author, pp, 'https://t.me/gemazan', 'Whats New?', null, null, [
       ['Donation', '/donasi'],
       ['Speed', '/ping'],
       ['Group', '/forum']
-    ], { asLocation: true }, m)
+    ], m)
   } catch (e) {
     conn.reply(m.chat, 'Sorry, the menu is in error 😕', m)
     throw e
