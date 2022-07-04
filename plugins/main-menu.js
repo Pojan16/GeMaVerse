@@ -122,7 +122,7 @@ let handler = (m, { conn, usedPrefix: _p, __dirname }) => {
     let text = typeof conn.menu == 'string' ? conn.menu : typeof conn.menu == 'object' ? _text : ''
     let replace = {
       '%': '%',
-      p: _p, uptime, muptime,
+      p: _p, uptime,
       me: conn.getName(conn.user.jid),
       person: m.sender.split('@')[0],
       exp: exp - min,
