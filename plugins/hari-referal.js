@@ -1,3 +1,4 @@
+import db from '../lib/database.js'
 import crypto from 'crypto'
 
 const coin_first_time = 2500
@@ -10,7 +11,7 @@ const coin_bonus = {
   100: 10000000,
 }
 
-let handler = async (m, { conn, usedPrefix, text }) => {
+let handler = (m, { conn, usedPrefix, text }) => {
   let users = db.data.users
   if (text) {
     if ('ref_count' in users[m.sender]) throw 'Tidak bisa menggunakan kode referal!'

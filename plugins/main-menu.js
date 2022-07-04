@@ -147,7 +147,7 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    const pp = await conn.profilePictureUrl(m.sender).catch(_ => './src/anime.jpg')
+    const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/anime.jpg')
     conn.sendHydrated(m.chat, text.trim(), author, pp, 'https://t.me/gemazan', 'Whats New?', '6285856430321', 'Contact me', null, null, [
       ['Donation', '/donasi'],
       ['Speed', '/ping'],
