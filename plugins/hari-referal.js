@@ -14,20 +14,20 @@ const coin_bonus = {
 let handler = (m, { conn, usedPrefix, text }) => {
   let users = db.data.users
   if (text) {
-    if ('ref_count' in users[m.sender]) throw 'Tidak bisa menggunakan kode referal!'
+    if ('ref_count' in users[m.sender]) throw 'Cannot use referral code!'
     let link_creator = (Object.entries(users).find(([, { ref_code }]) => ref_code === text.trim()) || [])[0]
-    if (!link_creator) throw 'Kode referal tidak valid'
+    if (!link_creator) throw 'Invalid referral code'
     let count = users[link_creator].ref_count++
     let extra = coin_bonus[count] || 0
     users[link_creator].coin += coin_link_creator + extra
     users[m.sender].coin += coin_first_time
     users[m.sender].ref_count = 0
     m.reply(`
-Selamat!
+Congrats!
 +${coin_first_time} coin
 `.trim())
     m.reply(`
-Seseorang telah menggunakan kode referal kamu
+Someone has used your referral code
 +${coin_link_creator + extra} coin
 `.trim(), link_creator)
   } else {
@@ -36,23 +36,23 @@ Seseorang telah menggunakan kode referal kamu
     let command_text = `${usedPrefix}ref ${code}`
     let command_link = `wa.me/${conn.user.jid.split('@')[0]}?text=${encodeURIComponent(command_text)}`
     let share_text = `
-Dapatkan ${coin_first_time} coin untuk yang menggunakan link/kode referal dibawah ini
+Get ${coin_first_time} coins for those who use the link/referral code below
 
-Referal Code: *${code}*
+Referral Code: *${code}*
 
 ${command_link}
 `.trim()
     m.reply(`
-Dapatkan ${coin_link_creator} coin untuk setiap pengguna baru yang menggunakan kode referal kamu
-${users[m.sender].ref_count} orang telah menggunakan kode referal kamu
+Get ${coin_link_creator} coin for every new user who uses your referral code
+${users[m.sender].ref_count} people have used your referral code
 
-Kode referal kamu: ${code}
+Your referral code: ${code}
 
-Bagikan link kepada teman: ${command_link}
+Share link with friends: ${command_link}
 
-atau kirim pesan kepada teman wa.me/?text=${encodeURIComponent(share_text)}
+or send a message to a friend wa.me/?text=${encodeURIComponent(share_text)}
 
-${Object.entries(coin_bonus).map(([count, coin]) => `${count} Orang = Bonus ${coin} coin`).join('\n')}
+${Object.entries(coin_bonus).map(([count, coin]) => `${count} Person = Bonus ${coin} coin`).join('\n')}
 `.trim())
   }
 }

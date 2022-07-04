@@ -13,7 +13,7 @@ let handler = async (m) => {
   for (let reward of Object.keys(rewards)) {
     if (!(reward in user)) continue
     user[reward] += rewards[reward]
-    text += `*+${rewards[reward]}* ${global.rpg.emoticon(reward)}${reward}\n`
+    text += `*+${rewards[reward]}* ${reward}\n`
   }
   m.reply(text.trim())
   user.lastclaim = new Date * 1
