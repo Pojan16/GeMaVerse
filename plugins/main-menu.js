@@ -42,7 +42,7 @@ Powered by: *Fajrul Tamam*
   footer: '\n',
   after: `
 ━━「 *Thanks for you* 」━━
-@person
+@%person
 Please join *GROUP* by pressing the button below for status and updates from GeMa BOT.
 
 ----------------
@@ -50,13 +50,12 @@ Want to advertise here? Contact. 6285856430321
 Report to Owner If you find errors, suggestions, criticisms, and donations for BOT. (v.BETA)
 `,
 }
-let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
+let handler = (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
-    let _package = JSON.parse(await promises.readFile(join(__dirname, '../package.json')).catch(_ => ({}))) || {}
     let { coin, exp, limit, warn, level, role, registered } = db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
     let name = registered ? db.data.users[m.sender].name : conn.getName(m.sender)
-    let d = new Date(new Date + 3600000)
+    let d = new Date(new Date() + 3600000)
     let locale = 'id'
     // d.getTimeZoneOffset()
     // Offset -420 is 18.00
@@ -80,15 +79,6 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       second: 'numeric'
     })
     let _uptime = process.uptime() * 1000
-    let _muptime
-    if (process.send) {
-      process.send('uptime')
-      _muptime = await new Promise(resolve => {
-        process.once('message', resolve)
-        setTimeout(resolve, 1000)
-      }) * 1000
-    }
-    let muptime = clockString(_muptime)
     let uptime = clockString(_uptime)
     let totalreg = Object.keys(db.data.users).length
     let rtotalreg = Object.values(db.data.users).filter(user => user.registered == true).length
@@ -135,24 +125,20 @@ let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
       p: _p, uptime, muptime,
       me: conn.getName(conn.user.jid),
       person: m.sender.split('@')[0],
-      npmname: _package.name,
-      npmdesc: _package.description,
-      version: _package.version,
       exp: exp - min,
       maxexp: xp,
       totalexp: exp,
       xp4levelup: max - exp,
-      github: _package.homepage ? _package.homepage.url || _package.homepage : '[unknown github url]',
       level, warn, limit, coin, name, weton, week, date, islamicDate, time, totalreg, rtotalreg, role,
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/anime.jpg')
-    conn.sendHydrated(m.chat, text.trim(), author, pp, 'https://t.me/gemazan', 'Whats New?', '6285856430321', 'Contact me', null, null, [
+    let pp = '../src/anime.jpg'
+    conn.sendHydrated(m.chat, text.trim(), author, pp, 'https://t.me/gemazan', 'Whats New?', null, null, [
       ['Donation', '/donasi'],
       ['Speed', '/ping'],
       ['Group', '/forum']
-    ], m)
+    ], { asLocation: true }, m)
   } catch (e) {
     conn.reply(m.chat, 'Sorry, the menu is in error 😕', m)
     throw e

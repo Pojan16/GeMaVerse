@@ -1,4 +1,4 @@
-import db, { loadDatabase } from './lib/database.js'
+import db, { loadDatabase } from '../lib/database.js'
 export async function before(m) {
   if (!db.data.chats[m.chat].viewonce) return
   let q = m.quoted ? m.quoted : m
