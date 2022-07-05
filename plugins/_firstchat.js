@@ -6,7 +6,7 @@ import moment from 'moment-timezone'
 export async function all(m) {
   if (m.isGroup) return
   let users = db.data.users[m.sender]
-  if (new Date - users.pc < 43200000) return // setiap 12 jam
+  if (new Date() - users.pc < 43200000) return // setiap 12 jam
   let rows = [{
     title: 'T&C Or Rules',
     description: "Terms & Conditions of this bot",
@@ -46,7 +46,7 @@ _t.me/gemazan/_`,
     listType: 1
   }
   await this.sendMessage(m.chat, button, listMessage, m)
-  users.pc = new Date * 1
+  users.pc = new Date() * 1
 }
 /*function ucapan() {
   const time = moment.tz('Asia/Jakarta').format('HH')
