@@ -8,7 +8,7 @@ Jadwal Sholat *${text}*
 ${Object.entries(res.today).map(([name, data]) => `*Sholat ${name}:* ${data}`).join('\n').trim()}
 `.trim())
 }
-handler.help = ['jadwal <daerah>']
+handler.help = ['jadwalsholat <daerah>']
 handler.tags = ['islam']
 handler.command = /^(jadwal)?s(a|o|ha|ho)lat$/i
 

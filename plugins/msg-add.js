@@ -10,7 +10,7 @@ let handler = async (m, { conn, command, usedPrefix, text }) => {
     msgs[text] = M.fromObject(await m.getQuotedObj()).toJSON()
     m.reply(`Successfully added message '${text}'\n\nAccess it by typing its name`.trim())
 }
-handler.help = ['msg'].map(v => 'add' + v + ' <teks>')
+handler.help = ['msg'].map(v => 'add' + v + ' <text>')
 handler.tags = ['database']
 handler.command = /^addmsg$/
 

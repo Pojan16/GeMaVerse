@@ -12,7 +12,7 @@ let handler = async (m, { conn, text, usedPrefix }) => {
         await conn.sendButton(m.chat, 'Voting begins!', 'touch for choose', null, [['Upvote - for yes', `/upvote`], ['Devote - for no', `/devote`], ['Cek - for cek vote', '/cekvote']], m)
     ]
 }
-handler.help = ['startvote [reason]']
+handler.help = ['startvote <reason>']
 handler.tags = ['absen']
 handler.command = /^(start|mulai)vote$/i
 handler.group = true

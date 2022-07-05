@@ -9,7 +9,7 @@ let handler = async (m) => {
         m.reply(format(JSON.parse(img.exif.slice(22).toString())))
     }
 }
-handler.help = ['getexif']
+handler.help = ['getexif (reply sticker)']
 handler.tags = ['media','tools']
 handler.command = ['getexif']
 

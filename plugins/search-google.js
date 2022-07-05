@@ -22,7 +22,7 @@ let handler = async (m, { conn, command, args }) => {
         m.reply(msg)
     }
 }
-handler.help = ['google', 'googlef'].map(v => v + ' <pencarian>')
+handler.help = ['google', 'googlef'].map(v => v + ' <search>')
 handler.tags = ['search']
 handler.command = /^googlef?$/i
 

@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     if (!audio.data) throw 'Can\'t convert media to audio'
     conn.sendFile(m.chat, audio.data, 'audio.mp3', '', m, null, { mimetype: 'audio/mp4' })
 }
-handler.help = ['audio [convert to audio/mp3]']
+handler.help = ['audio (reply)']
 handler.tags = ['media']
 handler.command = /^(audio)$/i
 

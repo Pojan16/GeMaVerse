@@ -11,7 +11,7 @@ let handler = async (m, { text }) => {
 }
 
 
-handler.help = ['cmd'].map(v => 'del' + v + ' <teks>')
+handler.help = ['cmd'].map(v => 'del' + v + ' [text]')
 handler.tags = ['database']
 handler.command = ['delcmd']
 

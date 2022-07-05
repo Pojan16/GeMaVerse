@@ -6,7 +6,7 @@ let handler = async (m, { conn, text }) => {
     }
   })
 }
-handler.help = ['mention','say']
+handler.help = ['mention <text>','say']
 handler.tags = ['tools']
 handler.command = /^(mention|say)$/i
 

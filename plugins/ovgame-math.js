@@ -22,7 +22,7 @@ let handler = async (m, { conn, args, usedPrefix, command }) => {
         }, math.time)
     ]
 }
-handler.help = ['math <mode>']
+handler.help = ['math [mode]']
 handler.tags = ['gameov']
 handler.command = /^math/i
 

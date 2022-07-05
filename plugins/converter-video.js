@@ -19,7 +19,7 @@ let handler = async (m, { conn }) => {
     }
     await conn.sendFile(m.chat, out, 'out.mp4', null, m)
 }
-handler.help = ['video [convert to video]']
+handler.help = ['video (reply)']
 handler.tags = ['media']
 handler.command = /^(mp4|video)$/i
 

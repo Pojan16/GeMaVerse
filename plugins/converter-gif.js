@@ -10,7 +10,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     }
     await conn.sendFile(m.chat, out, 'out.gif', '*DONE*', m, false, { mimetype: 'video/gif', thumbnail: Buffer.alloc(0) })
 }
-handler.help = ['gif [convert to gif]']
+handler.help = ['gif (reply)']
 handler.tags = ['media']
 handler.command = /^gif$/i
 

@@ -50,7 +50,7 @@ Want to advertise here? Contact. 6285856430321
 Report to Owner If you find errors, suggestions, criticisms, and donations for BOT. (v.BETA)
 `,
 }
-let handler = (m, { conn, usedPrefix: _p, __dirname }) => {
+let handler = async (m, { conn, usedPrefix: _p, __dirname }) => {
   try {
     let { coin, exp, limit, warn, level, role, registered } = db.data.users[m.sender]
     let { min, xp, max } = xpRange(level, global.multiplier)
@@ -133,7 +133,7 @@ let handler = (m, { conn, usedPrefix: _p, __dirname }) => {
       readmore: readMore
     }
     text = text.replace(new RegExp(`%(${Object.keys(replace).sort((a, b) => b.length - a.length).join`|`})`, 'g'), (_, name) => '' + replace[name])
-    const pp = conn.profilePictureUrl(conn.user.jid).catch(_ => './src/anime.jpg')
+    const pp = await conn.profilePictureUrl(conn.user.jid).catch(_ => './src/anime.jpg')
     conn.sendHydrated(m.chat, text.trim(), author, pp, 'https://t.me/gemazan', 'Whats New?', null, null, [
       ['Donation', '/donasi'],
       ['Speed', '/ping'],

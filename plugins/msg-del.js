@@ -7,7 +7,7 @@ let handler = async (m, { command, usedPrefix, text }) => {
     delete msgs[text]
     m.reply(`Successfully deleted message in message list with name '${text}'`)
 }
-handler.help = ['msg'].map(v => 'del' + v + ' <teks>')
+handler.help = ['msg'].map(v => 'del' + v + ' <text>')
 handler.tags = ['database']
 handler.command = /^delmsg$/
 
