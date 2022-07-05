@@ -7,32 +7,18 @@ export async function all(m) {
   if (m.isGroup) return
   let users = db.data.users[m.sender]
   if (new Date() - users.pc < 43200000) return // setiap 12 jam
-  let rows = [{
-    title: 'T&C Or Rules',
-    description: "Terms & Conditions of this bot",
-    rowId: "/snk"
-  },
-    {
-      title: 'MENU BOT',
-      description: "Show menu!",
-      rowId: "/menu"
-    },
-    {
-      title: 'START',
-      description: "Find Friends Anonymous Chat",
-      rowId: "/start"
-    },
-  ]
-
-  let sections = [{
+const sections = [
+  {
     title: "Choose One To Bring Up The Contents Of The Bot",
-    rows: rows
-  }]
-  let button = {
-    buttonText: 'Press To Select',
-    description: `
-*Welcome to the official GeMa-Bot WhatsApp*🤖
-
+    rows: [
+      {title: "T&C or Rules", rowId: "/tnc", description: "Terms & Conditions of this bot"},
+      {title: "MENU BOT", rowId: "/menu", description: "Show menu!"},
+      {title: "START", rowId: "/start", description: "Find Friends Anonymous Chat"},
+      ]
+  }
+  ]
+  const listMessage = {
+    text: `
 \`\`\`Hi, I am GeMa WhatsApp Bot Assistant who is ready to help you with some of the features that the bot has.
 
 By starting this conversation, you agree to the terms and conditions of GeMa-Bot, right? 🤔\`\`\`
@@ -41,11 +27,14 @@ _PLEASE SEND TO YOUR WHATSAPP STATUS_ 😁
 _wa.me/6283122808260?text=.start_
 
 *Don't forget to subscribe and share!* 💌
-_t.me/gemazan/_`,
-    sections: sections,
-    listType: 1
+_t.me/gemazan/_
+`,
+footer: "Nice footer, link: https://linktr.ee/Zeroz04n",
+title: '*Welcome to the official GeMa-Bot WhatsApp*🤖',
+buttonText: "Press To Select",
+sections
   }
-  await this.sendMessage(m.chat, button, listMessage, m)
+  this.sendMessage(m.chat, listMessage, m)
   users.pc = new Date() * 1
 }
 /*function ucapan() {

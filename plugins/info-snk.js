@@ -36,7 +36,7 @@ Thank you!✨
 `.trim())
 handler.help = ['tnc']
 handler.tags = ['info']
-handler.command = /^(tnc)$/i
+handler.command = /^(tnc|snk)$/i
 handler.fail = null
 handler.exp = 0
 
