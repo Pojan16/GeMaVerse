@@ -65,6 +65,38 @@ global.packname = sticker_name
 global.author = sticker_author
 */
 global.multiplier = 50 // The higher, The harder levelup
+global.rpg = {
+  emoticon(string) {
+    string = string.toLowerCase()
+    let emot = {
+      level: '🧬',
+      limit: '🌌',
+      healt: '❤️',
+      exp: '✉️',
+      money: '💵',
+      potion: '🥤',
+      diamond: '💎',
+      common: '📦',
+      uncommon: '🎁',
+      mythic: '🗳️',
+      legendary: '🗃️',
+      pet: '🎁',
+      sampah: '🗑',
+      armor: '🥼',
+      fishingrod: '🎣',
+      pickaxe: '⛏️',
+      sword: '⚔️',
+      kayu: '🪵',
+      batu: '🪨',
+      iron: '⛓️',
+      string: '🕸️',
+      kuda: '🐎',
+      kucing: '🐈' ,
+      anjing: '🐕',
+      makananpet: '🍖',
+      gold: '👑',
+      emerald: '💚'
+    }
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {
