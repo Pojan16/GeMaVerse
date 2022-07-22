@@ -9,13 +9,10 @@ import Connection from './lib/connection.js'
 import printMessage from './lib/print.js'
 import Helper from './lib/helper.js'
 import db, { loadDatabase } from './lib/database.js'
+import Queque from './lib/queque.js'
 
 // const { proto } = (await import('@adiwajshing/baileys')).default
 const isNumber = x => typeof x === 'number' && !isNaN(x)
-const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function () {
-    clearTimeout(this)
-    resolve()
-}, ms))
 
 /**
  * Handle messages upsert
@@ -23,7 +20,7 @@ const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(function (
  * @param {import('@adiwajshing/baileys').BaileysEventMap<unknown>['messages.upsert']} chatUpdate
  */
 export async function handler(chatUpdate) {
-    this.msgqueque = this.msgqueque || []
+    this.msgqueque = this.msgqueque || new Queque()
     if (!chatUpdate)
         return
     let m = chatUpdate.messages[chatUpdate.messages.length - 1]
@@ -145,21 +142,17 @@ export async function handler(chatUpdate) {
       const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
       const isPrems = isROwner || global.prems.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
 
-      if (opts['queque'] && m.text && !(isMods || isPrems)) {
-            let queque = this.msgqueque, time = 1000 * 5
-            const previousID = queque[queque.length - 1]
-            queque.push(m.id || m.key.id)
-            setInterval(async function () {
-                if (queque.indexOf(previousID) === -1) clearInterval(this)
-                await delay(time)
-            }, time)
+      if (opts['queque'] && m.text && !m.fromMe && !(isMods || isPrems)) {
+            const id = m.id
+            this.msgqueque.add(id)
+            await this.msgqueque.waitQueue(id)
         }
 
       if (m.isBaileys) return
       m.exp += Math.ceil(Math.random() * 10)
 
       let usedPrefix
-      let _user = db.data && db.data.users && db.data.users[m.sender]
+      let _user = db.data?.users?.[m.sender]
 
       const groupMetadata = (m.isGroup ? await Connection.store.fetchGroupMetadata(m.chat, this.groupMetadata) : {}) || {}
       const participants = (m.isGroup ? groupMetadata.participants: []) || []
@@ -384,9 +377,8 @@ export async function handler(chatUpdate) {
         console.error(e)
     } finally {
       if (opts['queque'] && m.text) {
-            const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
-            if (quequeIndex !== -1)
-                this.msgqueque.splice(quequeIndex, 1)
+          const id = m.id
+          this.msgqueque.unqueue(id)
       }
       //console.log(db.data.users[m.sender])
       let user,
@@ -427,7 +419,7 @@ export async function handler(chatUpdate) {
         console.log(m, m.quoted, e)
       }
       if (opts['autoread'])
-           await this.readMessages([m.key])
+          await this.readMessages([m.key])
     }
   }
 
