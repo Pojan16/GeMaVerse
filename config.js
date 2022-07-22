@@ -28,7 +28,7 @@ global.APIKeys = {
   // APIKey Here
   // 'https://website': 'apikey'
   'https://api.xteam.xyz': '66815f45b520083e',
-  'https://api.lolhuman.xyz': '43e52b5419bd6b1f84e6df4c',
+  'https://api.lolhuman.xyz': 'Atakbotz',
   'https://zynfx.herokuapp.com': 'Rivalgans',
   'https://zahirr-web.herokuapp.com': 'zahirgans',
   'https://api.zeks.xyz': 'Adibiklaik',
@@ -36,6 +36,8 @@ global.APIKeys = {
   'https://pencarikode.xyz': 'pais',
   'https://leyscoders-api.herokuapp.com': 'dappakntlll'
 }
+
+global.owner = ['6283122808260','6285335877178']
 // Sticker WM
 
 global.packname = '+62 831-2280-8260'
@@ -63,6 +65,38 @@ global.packname = sticker_name
 global.author = sticker_author
 */
 global.multiplier = 50 // The higher, The harder levelup
+global.rpg = {
+  emoticon(string) {
+    string = string.toLowerCase()
+    let emot = {
+      level: '🧬',
+      limit: '🌌',
+      healt: '❤️',
+      exp: '✉️',
+      money: '💵',
+      potion: '🥤',
+      diamond: '💎',
+      common: '📦',
+      uncommon: '🎁',
+      mythic: '🗳️',
+      legendary: '🗃️',
+      pet: '🎁',
+      sampah: '🗑',
+      armor: '🥼',
+      fishingrod: '🎣',
+      pickaxe: '⛏️',
+      sword: '⚔️',
+      kayu: '🪵',
+      batu: '🪨',
+      iron: '⛓️',
+      string: '🕸️',
+      kuda: '🐎',
+      kucing: '🐈' ,
+      anjing: '🐕',
+      makananpet: '🍖',
+      gold: '👑',
+      emerald: '💚'
+    }
 
 let file = fileURLToPath(import.meta.url)
 watchFile(file, () => {

@@ -24,6 +24,8 @@ import Helper from './lib/helper.js'
 import db, { loadDatabase } from './lib/database.js'
 import clearTmp from './lib/clearTmp.js';
 
+global.API = (name, path = '/', query = {}, apikeyqueryname) => (name in global.APIs ? global.APIs[name] : name) + path + (query || apikeyqueryname ? '?' + new URLSearchParams(Object.entries({ ...query, ...(apikeyqueryname ? { [apikeyqueryname]: global.APIKeys[name in global.APIs ? global.APIs[name] : name] } : {}) })) : '')
+
 const PORT = process.env.PORT || process.env.SERVER_PORT || 3000
 
 protoType()
