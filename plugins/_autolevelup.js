@@ -14,4 +14,4 @@ export function before(m) {
 Congratulation, you are now level *${user.level}!*`.trim())
     }
 }
-export const disabled = true
+export const disabled = false
