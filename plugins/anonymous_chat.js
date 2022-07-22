@@ -18,7 +18,7 @@ async function handler(m, { command }) {
         delete this.anonymous[room.id]
         if (command === 'leave') break
       }
-    case 'contact':
+    /*case 'contact':
     case 'mycontact':
     case 'sendcontact':
     case 'sendmycontact': {
@@ -28,14 +28,14 @@ async function handler(m, { command }) {
           throw false
         }
         let other = room.other(m.sender)
-        /*let profile = await this.profilePictureUrl(room.b)
+        let profile = await this.profilePictureUrl(room.b)
         let status = await this.fetchStatus(room.b)
         let msg = await this.sendFile(room.a, profile, `Name : ${await this.getName(room.b)}\nBio : ${status.status}\nUser : @${room.b.split("@")[0]}`, m, { mentions: [room.b] })
-        this.sendContact(room.a, [room.b.split("@")[0]], msg)*/
+        this.sendContact(room.a, [room.b.split("@")[0]], msg)
         this.reply(other, `https://wa.me/${m.chat.split("@")[0]}`, m)
         //m.reply('Sorry, this feature is currently in error 😕')
     }
-    break
+    break*/
     case 'start': {
         if (Object.values(this.anonymous).find(room => room.check(m.sender))) {
           this.sendButton(m.chat, '*Cant find!*\n_Arent you still on the chat server at this time 🤔_', author, null, [
@@ -119,9 +119,9 @@ async function handler(m, { command }) {
       }
   }
 }
-handler.help = ['start', 'next', 'leave', 'sendmycontact']
+handler.help = ['start', 'next', 'leave']
 handler.tags = ['anonymous']
-handler.command = /^start|next|leave|(send)?(my)?contact$/i
+handler.command = /^start|next|leave$/i
 handler.private = true
 handler.limit = false
 handler.register = false
